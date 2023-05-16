@@ -1,5 +1,5 @@
 {
-  "name": "fhir",
+  "name": "asu-fhir-consent-management",
   "scripts": {
     "dev": "solid-start dev",
     "build": "solid-start build",
