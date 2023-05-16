@@ -2,13 +2,13 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@auth/core':
-    specifier: ^0.3.0
-    version: 0.3.0
+    specifier: ^0.2.2
+    version: 0.2.2
   '@auth/solid-start':
-    specifier: ^0.1.0
-    version: 0.1.1(@auth/core@0.3.0)(solid-js@1.7.5)(solid-start@0.2.26)
+    specifier: ^0.1.1
+    version: 0.1.1(@auth/core@0.2.2)(solid-js@1.7.5)(solid-start@0.2.26)
   '@solidjs/meta':
-    specifier: ^0.28.2
+    specifier: ^0.28.5
     version: 0.28.5(solid-js@1.7.5)
   '@solidjs/router':
     specifier: ^0.8.2
@@ -17,7 +17,7 @@ dependencies:
     specifier: ^5.2.3
     version: 5.2.3(@popperjs/core@2.11.7)
   solid-js:
-    specifier: ^1.7.2
+    specifier: ^1.7.5
     version: 1.7.5
   solid-start:
     specifier: ^0.2.26
@@ -67,30 +67,30 @@ packages:
   /@antfu/utils@0.7.2:
     resolution: {integrity: sha512-vy9fM3pIxZmX07dL+VX1aZe7ynZ+YyB0jY+jE6r3hOK6GNY2t6W8rzpFC4tgpbXUYABkFQwgJq2XYXlxbXAI0g==}
 
-  /@auth/core@0.3.0:
-    resolution: {integrity: sha512-4bmPzEiQKSXD825Jrcgj7igSFghBTpkSQ6U/jnYABJRQGhwnWJ/q9FHxEo6SGZWvYvpjOrvJOWhrP4Xng4CGUQ==}
+  /@auth/core@0.2.2:
+    resolution: {integrity: sha512-hEs3no7OjbFTZjb5XjbE6hlkmYw+NVfG+MwQ3IhHTwVx8hAQ4BV704UMWiPmBVXeJrkoVrNFYlkGpEAc3pGNgg==}
     peerDependencies:
       nodemailer: 6.8.0
     peerDependenciesMeta:
       nodemailer:
         optional: true
     dependencies:
-      '@panva/hkdf': 1.1.1
+      '@panva/hkdf': 1.0.2
       cookie: 0.5.0
-      jose: 4.14.4
-      oauth4webapi: 2.3.0
+      jose: 4.11.1
+      oauth4webapi: 2.0.5
       preact: 10.11.3
       preact-render-to-string: 5.2.3(preact@10.11.3)
     dev: false
 
-  /@auth/solid-start@0.1.1(@auth/core@0.3.0)(solid-js@1.7.5)(solid-start@0.2.26):
+  /@auth/solid-start@0.1.1(@auth/core@0.2.2)(solid-js@1.7.5)(solid-start@0.2.26):
     resolution: {integrity: sha512-WMWBH/RbQTs5oFBoOjtJgKKZv3QlZQkyiAj1UnKWJ2+3UbuNQAhDBM4ppZD54CdbF/Wb1LVXjUNI6LBbopUK6g==}
     peerDependencies:
       '@auth/core': ~0.2.2 || ^0.2.2
       solid-js: ^1.5.7
       solid-start: ^0.2.14
     dependencies:
-      '@auth/core': 0.3.0
+      '@auth/core': 0.2.2
       solid-js: 1.7.5
       solid-start: 0.2.26(@solidjs/meta@0.28.5)(@solidjs/router@0.8.2)(solid-js@1.7.5)(solid-start-node@0.2.26)(vite@4.3.5)
     dev: false
@@ -1526,8 +1526,13 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
 
+  /@panva/hkdf@1.0.2:
+    resolution: {integrity: sha512-MSAs9t3Go7GUkMhpKC44T58DJ5KGk2vBo+h1cqQeqlMfdGkxaVB78ZWpv9gYi/g2fa4sopag9gJsNvS8XGgWJA==}
+    dev: false
+
   /@panva/hkdf@1.1.1:
     resolution: {integrity: sha512-dhPeilub1NuIG0X5Kvhh9lH4iW3ZsHlnzwgwbOlgwQ2wG1IqFzsgHqmKPk3WzsdWAeaxKJxgM0+W433RmN45GA==}
+    dev: true
 
   /@polka/url@1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
@@ -2441,8 +2446,13 @@ packages:
       '@sideway/formula': 3.0.1
       '@sideway/pinpoint': 2.0.0
 
+  /jose@4.11.1:
+    resolution: {integrity: sha512-YRv4Tk/Wlug8qicwqFNFVEZSdbROCHRAC6qu/i0dyNKr5JQdoa2pIGoS04lLO/jXQX7Z9omoNewYIVIxqZBd9Q==}
+    dev: false
+
   /jose@4.14.4:
     resolution: {integrity: sha512-j8GhLiKmUAh+dsFXlX1aJCbt5KMibuKb+d7j1JaOJG6s2UjX1PQlW+OKB/sD4a/5ZYF4RcmYmLSndOoU3Lt/3g==}
+    dev: true
 
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -2636,8 +2646,8 @@ packages:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
 
-  /oauth4webapi@2.3.0:
-    resolution: {integrity: sha512-JGkb5doGrwzVDuHwgrR4nHJayzN4h59VCed6EW8Tql6iHDfZIabCJvg6wtbn5q6pyB2hZruI3b77Nudvq7NmvA==}
+  /oauth4webapi@2.0.5:
+    resolution: {integrity: sha512-KmoR3KxCwmr9KvL/c/6UVzQnc4CUjo+j8NSgD3bWYlZXpUmyOVw97nDVb0BKZhCcUtGsbll16v8vsnR5JbTZ9A==}
     dev: false
 
   /oauth@0.9.15:

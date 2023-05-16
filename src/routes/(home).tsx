@@ -30,7 +30,7 @@ export default function Home() {
         fallback={
           <>
             <span>You are not signed in.</span>
-            <button class="btn btn-primary" onClick={() => signIn("discord")}>
+            <button class="btn btn-primary" onClick={() => signIn("github")}>
               Sign In
             </button>
           </>

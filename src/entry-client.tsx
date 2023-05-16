@@ -28,6 +28,18 @@ scripts.forEach((src, index) => {
       const fhirScript = document.createElement("script");
       fhirScript.src = getRealUrl("fhir/lformsFHIRAll.min.js");
       fhirScript.defer = true;
+      fhirScript.async = true;
+      fhirScript.onload = () => {
+        const timer = setInterval(() => {
+          const event = new CustomEvent("lformsReady", {
+            detail: {
+              timer,
+            },
+          });
+          document.dispatchEvent(event);
+        }, 100);
+      };
+
       document.head.appendChild(fhirScript);
     };
   }
