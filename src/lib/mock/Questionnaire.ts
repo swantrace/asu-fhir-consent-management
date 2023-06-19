@@ -4,6 +4,7 @@ const questionnaires = [
     resource: {
       resourceType: 'Questionnaire',
       id: '59525',
+      title: 'Lifelines Questionnaire 1',
       meta: {
         versionId: '1',
         lastUpdated: '2019-11-12T13:42:04.292+00:00',

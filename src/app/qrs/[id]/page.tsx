@@ -1,3 +1,4 @@
+import { Card, Title } from '@tremor/react';
 /* eslint-disable @next/next/no-before-interactive-script-outside-document */
 // // create a page for each questionnaire
 // import type { RouteDataArgs } from "solid-start";
@@ -62,11 +63,30 @@
 // }
 import LForm from './LForm';
 
-export default function Questionnaire() {
+export default async function Questionnaire({
+  params: { id }
+}: {
+  params: { id: string };
+}) {
+  // get questionnaireResponse from route handler
+
+  const questionnaireResponse = await fetch(
+    `${process.env.FHIR_SERVER_BASE_URL}/QuestionnaireResponse/${id}`,
+    {
+      headers: {
+        accept: 'application/fhir+json'
+      }
+    }
+  ).then((response) => response.json());
+
+  console.log('questionnaireResponse', questionnaireResponse);
+
   return (
-    <main>
-      <h1>Questionnaire</h1>
-      <LForm />
+    <main className="p-4 md:p-10 mx-auto max-w-7xl">
+      <Title>Questionnaire</Title>
+      <Card className="mt-6">
+        <LForm qr={questionnaireResponse} />
+      </Card>
     </main>
   );
 }
