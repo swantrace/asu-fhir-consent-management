@@ -23,10 +23,11 @@ const getRealUrl = (url: string) => {
   }
 };
 
-export default function LForm(formDefinition: any) {
+export default function LForm(questionnaireResponse: any) {
   const formContainer = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (formContainer.current) {
+    if (formContainer.current && window && window.LForms) {
+      const formDefinition = questionnaireResponse?.resource?.questionnaire;
       window.LForms.Util.addFormToPage(
         formDefinition ?? {},
         formContainer.current ?? {},
@@ -35,7 +36,7 @@ export default function LForm(formDefinition: any) {
         }
       );
     }
-  }, [formContainer, formDefinition]);
+  }, [formContainer, questionnaireResponse]);
   return (
     <>
       <div id="form-container" ref={formContainer}></div>

@@ -7,35 +7,48 @@ import {
   TableCell,
   Text
 } from '@tremor/react';
+import ResponseTableRow from './tableRow';
 
-interface User {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
+interface QuestionnaireResponse {
+  resource: {
+    status: string;
+    id: string;
+    meta: {
+      lastUpdated: string;
+    };
+  };
+  questionnaire: {
+    resource: {
+      title: string;
+    };
+  };
 }
 
-export default async function UsersTable({ users }: { users: User[] }) {
+export default async function QuestionnaireResponsesTable({
+  questionnaireResponses
+}: {
+  questionnaireResponses: QuestionnaireResponse[];
+}) {
   return (
     <Table>
       <TableHead>
         <TableRow>
-          <TableHeaderCell>Name</TableHeaderCell>
-          <TableHeaderCell>Username</TableHeaderCell>
-          <TableHeaderCell>Email</TableHeaderCell>
+          <TableHeaderCell>Title</TableHeaderCell>
+          <TableHeaderCell>Status</TableHeaderCell>
+          <TableHeaderCell>LastUpdated</TableHeaderCell>
         </TableRow>
       </TableHead>
       <TableBody>
-        {users.map((user) => (
-          <TableRow key={user.id}>
-            <TableCell>{user.name}</TableCell>
-            <TableCell>
-              <Text>{user.username}</Text>
-            </TableCell>
-            <TableCell>
-              <Text>{user.email}</Text>
-            </TableCell>
-          </TableRow>
+        {questionnaireResponses.map((qr) => (
+          <ResponseTableRow
+            key={qr.resource.id}
+            id={qr.resource.id}
+            title={qr.questionnaire.resource.title}
+            status={qr.resource.status}
+            lastUpdated={new Date(
+              qr.resource.meta.lastUpdated
+            ).toLocaleString()}
+          />
         ))}
       </TableBody>
     </Table>
