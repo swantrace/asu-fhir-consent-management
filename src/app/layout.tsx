@@ -1,5 +1,5 @@
 import './globals.css';
-
+import '../../node_modules/lforms/dist/lforms/webcomponent/styles.css';
 import { Analytics } from '@vercel/analytics/react';
 import Nav from './nav';
 import Toast from './toast';

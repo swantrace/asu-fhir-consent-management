@@ -85,7 +85,7 @@ export default async function Questionnaire({
     <main className="p-4 md:p-10 mx-auto max-w-7xl">
       <Title>Questionnaire</Title>
       <Card className="mt-6">
-        <LForm qr={questionnaireResponse} />
+        <LForm questionnaireResponse={questionnaireResponse} />
       </Card>
     </main>
   );
