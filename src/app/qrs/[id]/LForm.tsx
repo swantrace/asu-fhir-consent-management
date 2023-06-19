@@ -23,11 +23,37 @@ const getRealUrl = (url: string) => {
   }
 };
 
-export default function LForm(questionnaireResponse: any) {
+export default function LForm({
+  questionnaireResponse
+}: {
+  questionnaireResponse: any;
+}) {
+  console.log('questionnaireResponse', questionnaireResponse);
   const formContainer = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (formContainer.current && window && window.LForms) {
-      const formDefinition = questionnaireResponse?.resource?.questionnaire;
+    if (
+      formContainer.current &&
+      window &&
+      window.LForms &&
+      questionnaireResponse
+    ) {
+      // const formDefinition = questionnaireResponse?.resource?.questionnaire;
+      const {
+        questionnaire: { resource: questionnaireResource },
+        resource: questionnaireResponseResource
+      } = questionnaireResponse;
+      const formData = window.LForms.Util.convertFHIRQuestionnaireToLForms(
+        questionnaireResource,
+        'R4'
+      );
+      console.log('formData', formData);
+      const formDefinition = window.LForms.Util.mergeFHIRDataIntoLForms(
+        'QuestionnaireResponse',
+        questionnaireResponseResource,
+        formData,
+        'R4'
+      );
+      console.log('formDefinition', formDefinition);
       window.LForms.Util.addFormToPage(
         formDefinition ?? {},
         formContainer.current ?? {},
