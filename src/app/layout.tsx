@@ -1,14 +1,15 @@
+/* eslint-disable @next/next/no-before-interactive-script-outside-document */
 import './globals.css';
-import '../../node_modules/lforms/dist/lforms/webcomponent/styles.css';
-import { Analytics } from '@vercel/analytics/react';
-import Nav from './nav';
-import Toast from './toast';
 import { Suspense } from 'react';
+import Script from 'next/script';
+import Nav from './nav';
+import { lformScripts, getRealUrl } from '../lib/lforms';
+
+const scripts = lformScripts.slice(0, -1);
 
 export const metadata = {
-  title: 'Next.js 13 + PlanetScale + NextAuth + Tailwind CSS',
-  description:
-    'A user admin dashboard configured with Next.js, PlanetScale, NextAuth, Tailwind CSS, TypeScript, ESLint, and Prettier.'
+  title: 'ASU Fhir Consent Management System',
+  description: ''
 };
 
 export default async function RootLayout({
@@ -24,8 +25,17 @@ export default async function RootLayout({
           <Nav />
         </Suspense>
         {children}
-        <Analytics />
-        <Toast />
+        {scripts.map((script) => (
+          <Script
+            src={getRealUrl(script)}
+            strategy="beforeInteractive"
+            key={script}
+          />
+        ))}
+        <link
+          rel="stylesheet"
+          href="https://clinicaltables.nlm.nih.gov/lforms-versions/30.0.0-beta.6/webcomponent/styles.css"
+        />
       </body>
     </html>
   );
