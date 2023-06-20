@@ -1,15 +1,6 @@
 'use client';
 
-import {
-  Table,
-  TableHead,
-  TableRow,
-  TableHeaderCell,
-  TableBody,
-  TableCell,
-  Text
-} from '@tremor/react';
-import { useRouter } from 'next/navigation';
+import { TableRow, TableCell, Text } from '@tremor/react';
 
 export default function ResponseTableRow({
   id,
@@ -22,11 +13,12 @@ export default function ResponseTableRow({
   status: string;
   lastUpdated: string;
 }) {
-  const router = useRouter();
   return (
     <TableRow
       className="hover:bg-gray-100 cursor-pointer"
-      onClick={() => router.push(`/qrs/${id}`)}
+      onClick={() => {
+        window.location.href = `/qrs/${id}`;
+      }}
     >
       <TableCell>{title}</TableCell>
       <TableCell>

@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import questionnaires from '../../../../../../lib/mock/Questionnaire';
 
+export const fetchCache = 'force-cache';
+export const runtime = 'edge';
+
 export function GET(
   _: Request,
   { params: { id } }: { params: { id: string } }

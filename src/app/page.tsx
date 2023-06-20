@@ -2,8 +2,6 @@ import { Card } from '@tremor/react';
 import QuestionnaireResponsesTable from './table';
 import { getServerSession } from 'next-auth';
 
-export const dynamic = 'force-dynamic';
-
 export default async function IndexPage() {
   const session = await getServerSession();
   const email = session?.user?.email;
@@ -17,7 +15,8 @@ export default async function IndexPage() {
       const questionnaireId =
         questionnaireResponse.resource.questionnaire.split('Questionnaire/')[1];
       const questionnaireRes = await fetch(
-        `${process.env.NEXTAUTH_URL}/api/mock/fhir/Questionnaire/${questionnaireId}`
+        `${process.env.NEXTAUTH_URL}/api/mock/fhir/Questionnaire/${questionnaireId}`,
+        { cache: 'force-cache' }
       );
       const questionnaire = await questionnaireRes.json();
       return { ...questionnaireResponse, questionnaire };
@@ -25,11 +24,6 @@ export default async function IndexPage() {
   const completeQuestionnaireResponses = await Promise.all(
     completeQuestionnaireResponsesFetchPromises
   );
-
-  const users = [
-    { id: 1, name: 'test', username: 'test', email: 'test@test.com' },
-    { id: 2, name: 'test2', username: 'test2', email: 'test2@test.com' }
-  ];
 
   return (
     <main className="p-4 md:p-10 mx-auto max-w-7xl">

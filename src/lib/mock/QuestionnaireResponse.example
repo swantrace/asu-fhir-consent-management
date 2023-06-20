@@ -1,6 +1,6 @@
-export default [
+const questionnaireResponses =  [
   {
-    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/QuestionnaireResponse/7270321`,
+    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/QuestionnaireResponse/7270321/get`,
     resource: {
       resourceType: "QuestionnaireResponse",
       id: "7270321",
@@ -51,7 +51,7 @@ export default [
     },
   },
   {
-    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/QuestionnaireResponse/7270307`,
+    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/QuestionnaireResponse/7270307/get`,
     resource: {
       resourceType: "QuestionnaireResponse",
       id: "7270307",
@@ -86,7 +86,7 @@ export default [
     },
   },
   {
-    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/QuestionnaireResponse/7270308`,
+    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/QuestionnaireResponse/7270308/get`,
     resource: {
       resourceType: "QuestionnaireResponse",
       id: "7270308",
@@ -129,7 +129,7 @@ export default [
     },
   },
   {
-    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/QuestionnaireResponse/7270343`,
+    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/QuestionnaireResponse/7270343/get`,
     resource: {
       resourceType: "QuestionnaireResponse",
       id: "7270343",
@@ -172,7 +172,7 @@ export default [
     },
   },
   {
-    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/QuestionnaireResponse/7270344`,
+    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/QuestionnaireResponse/7270344/get`,
     resource: {
       resourceType: "QuestionnaireResponse",
       id: "7270344",
@@ -197,7 +197,7 @@ export default [
     },
   },
   {
-    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/QuestionnaireResponse/7270345`,
+    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/QuestionnaireResponse/7270345/get`,
     resource: {
       resourceType: "QuestionnaireResponse",
       id: "7270345",
@@ -222,7 +222,7 @@ export default [
     },
   },
   {
-    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/QuestionnaireResponse/7270350`,
+    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/QuestionnaireResponse/7270350/get`,
     resource: {
       resourceType: "QuestionnaireResponse",
       id: "7270350",
@@ -247,3 +247,5 @@ export default [
     },
   },
 ];
+
+export default questionnaireResponses;
