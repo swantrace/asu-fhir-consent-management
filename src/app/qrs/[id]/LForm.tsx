@@ -1,9 +1,10 @@
+/* eslint-disable @next/next/no-sync-scripts */
 /* eslint-disable @next/next/no-before-interactive-script-outside-document */
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import Script from 'next/script';
-import { Card, Title, Text, Flex, Button } from '@tremor/react';
+import { Flex, Button } from '@tremor/react';
 import { lformScripts, getRealUrl } from '../../../lib/lforms';
+import Script from 'next/script';
 
 export default function LForm({
   questionnaireResponse,
@@ -90,16 +91,11 @@ export default function LForm({
         </Button>
       </Flex>
       {lformScripts.map(([script, strategy]) =>
-        strategy === 'beforeInteractive' ? (
-          <Script src={getRealUrl(script)} strategy={strategy} key={script} />
-        ) : (
+        strategy === 'beforeInteractive' ? null : (
           <Script
             src={getRealUrl(script)}
-            strategy={strategy}
             key={script}
-            onLoad={(e) => {
-              setFhirSupportFileReady(true);
-            }}
+            onLoad={() => setFhirSupportFileReady(true)}
           />
         )
       )}

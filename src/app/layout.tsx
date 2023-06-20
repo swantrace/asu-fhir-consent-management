@@ -2,6 +2,8 @@
 import './globals.css';
 import { Suspense } from 'react';
 import Nav from './nav';
+import { lformScripts, getRealUrl } from '../lib/lforms';
+import Script from 'next/script';
 
 export const metadata = {
   title: 'ASU Fhir Consent Management System',
@@ -25,6 +27,11 @@ export default async function RootLayout({
           rel="stylesheet"
           href="https://clinicaltables.nlm.nih.gov/lforms-versions/30.0.0-beta.6/webcomponent/styles.css"
         />
+        {lformScripts.map(([script, strategy]) =>
+          strategy === 'beforeInteractive' ? (
+            <Script src={getRealUrl(script)} strategy={strategy} key={script} />
+          ) : null
+        )}
       </body>
     </html>
   );

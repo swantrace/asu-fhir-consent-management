@@ -5,14 +5,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "fill": "node ./scripts/fill.js",
+    "peak": "node ./scripts/peak.js"
   },
   "dependencies": {
-    "sharp": "^0.32.1",
-    "lodash.merge": "^4.6.2"
+    "@vercel/kv": "^0.2.1",
+    "dotenv": "^16.3.1",
+    "lodash.merge": "^4.6.2",
+    "sharp": "^0.32.1"
   },
   "devDependencies": {
     "@headlessui/react": "^1.7.15",
+    "@headlessui/tailwindcss": "^0.1.3",
     "@heroicons/react": "^2.0.18",
     "@planetscale/database": "^1.7.0",
     "@tremor/react": "^3.2.2",
@@ -35,7 +40,6 @@
     "react-dom": "18.2.0",
     "server-only": "^0.0.1",
     "tailwindcss": "^3.3.2",
-    "@headlessui/tailwindcss": "^0.1.3",
     "typescript": "^5.1.3"
   },
   "prettier": {

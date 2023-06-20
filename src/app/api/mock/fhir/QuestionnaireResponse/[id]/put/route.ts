@@ -1,22 +1,17 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs/promises';
-import path from 'path';
 import merge from 'lodash.merge';
 import { revalidatePath } from 'next/cache';
+import { kv } from '@vercel/kv';
 
 export const fetchCache = 'force-no-store';
+export const runtime = 'edge';
 
 export async function PUT(
   request: Request,
   { params: { id } }: { params: { id: string } }
 ) {
   try {
-    const questionnaireResponses = await fetch(
-      `${process.env.NEXTAUTH_URL}/json/responses.json`,
-      {
-        cache: 'no-cache'
-      }
-    ).then((response) => response.json());
+    const questionnaireResponses = (await kv.get('qrs')) as any[];
     const originalQuestionnaireResponse = questionnaireResponses.find(
       (qr: any) => qr.resource.id === id
     );
@@ -43,13 +38,8 @@ export async function PUT(
         return qr;
       }
     );
-    // const filePath = path.join(process.cwd(), '/src/lib/mock/responses.json');
-    const filePath = path.join(process.cwd(), '/public/json/responses.json');
 
-    await fs.writeFile(
-      filePath,
-      `${JSON.stringify(updatedQuestionnaireResponses, null, 2)}`
-    );
+    await kv.set('qrs', updatedQuestionnaireResponses);
 
     revalidatePath(
       `${process.env.NEXT_PUBLIC_FHIR_SERVER_BASE_URL}/QuestionnaireResponse/${id}/get`
