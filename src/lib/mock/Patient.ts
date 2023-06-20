@@ -1,6 +1,6 @@
 const patients = [
   {
-    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/Patient/test202020`,
+    fullUrl: `${process.env.NEXT_PUBLIC_FHIR_SERVER_BASE_URL}/Patient/test202020`,
     resource: {
       resourceType: 'Patient',
       id: 'test202020',
@@ -39,7 +39,7 @@ const patients = [
     }
   },
   {
-    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/Patient/592075`,
+    fullUrl: `${process.env.NEXT_PUBLIC_FHIR_SERVER_BASE_URL}/Patient/592075`,
     resource: {
       resourceType: 'Patient',
       id: '592075',
@@ -78,7 +78,7 @@ const patients = [
     }
   },
   {
-    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/Patient/113798`,
+    fullUrl: `${process.env.NEXT_PUBLIC_FHIR_SERVER_BASE_URL}/Patient/113798`,
     resource: {
       resourceType: 'Patient',
       id: '113798',

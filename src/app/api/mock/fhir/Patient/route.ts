@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import patients from '../../../../../lib/mock/Patient';
 import questionnaireResponses from '../../../../../lib/mock/QuestionnaireResponse';
 
+export const revalidate = 60 * 60 * 24; // 24 hours
+
 export function GET(request: Request) {
   const patient = patients.find((patient) =>
     patient.resource.identifier

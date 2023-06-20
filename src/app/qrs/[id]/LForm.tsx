@@ -2,26 +2,31 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Script from 'next/script';
+import { Card, Title, Text, Flex, Button } from '@tremor/react';
 import { lformScripts, getRealUrl } from '../../../lib/lforms';
 
 const scripts = lformScripts.slice(-1);
 
 export default function LForm({
-  questionnaireResponse
+  questionnaireResponse,
+  id
 }: {
   questionnaireResponse: any;
+  id: string;
 }) {
   const formContainer = useRef<HTMLDivElement>(null);
+  const formRendered = useRef(false);
   const [fhirSupportFileReady, setFhirSupportFileReady] = useState(false);
 
   useEffect(() => {
     if (
       formContainer.current &&
-      window &&
       window.LForms &&
       questionnaireResponse &&
-      fhirSupportFileReady
+      fhirSupportFileReady &&
+      !formRendered.current
     ) {
+      console.log('questionnaireResponse', questionnaireResponse);
       const {
         questionnaire: { resource: questionnaireResource },
         resource: questionnaireResponseResource
@@ -43,11 +48,51 @@ export default function LForm({
           prepopulate: true
         }
       );
+      formRendered.current = true;
     }
   }, [formContainer, questionnaireResponse, fhirSupportFileReady]);
+
+  const handleSubmit = async ({ id }: { id: string }) => {
+    console.log('submit button clicked');
+    if (formContainer.current && fhirSupportFileReady) {
+      try {
+        const resource = window.LForms.Util.getFormFHIRData(
+          'QuestionnaireResponse',
+          'R4',
+          formContainer.current
+        );
+        const questionnaireResponse = await fetch(
+          `${process.env.NEXT_PUBLIC_FHIR_SERVER_BASE_URL}/QuestionnaireResponse/${id}/put`,
+          {
+            method: 'PUT',
+            body: JSON.stringify({ resource }),
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json'
+            }
+          }
+        ).then((response) => response.json());
+        window.alert(
+          'Your response has been submitted. Thank you for your participation!'
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
   return (
     <>
       <div id="form-container" ref={formContainer}></div>
+      <Flex justifyContent="end" className="space-x-2 border-t pt-4 mt-4">
+        <Button
+          size="xs"
+          variant="primary"
+          onClick={() => handleSubmit({ id })}
+        >
+          Submit
+        </Button>
+      </Flex>
       {scripts.map((script) => (
         <Script
           src={getRealUrl(script)}

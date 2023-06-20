@@ -1,6 +1,6 @@
 const questionnaires = [
   {
-    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/Questionnaire/59525`,
+    fullUrl: `${process.env.NEXT_PUBLIC_FHIR_SERVER_BASE_URL}/Questionnaire/59525`,
     resource: {
       resourceType: 'Questionnaire',
       id: '59525',
@@ -82,7 +82,7 @@ const questionnaires = [
     }
   },
   {
-    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/Questionnaire/63500`,
+    fullUrl: `${process.env.NEXT_PUBLIC_FHIR_SERVER_BASE_URL}/Questionnaire/63500`,
     resource: {
       resourceType: 'Questionnaire',
       id: '63500',
@@ -276,7 +276,7 @@ const questionnaires = [
     }
   },
   {
-    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/Questionnaire/66609`,
+    fullUrl: `${process.env.NEXT_PUBLIC_FHIR_SERVER_BASE_URL}/Questionnaire/66609`,
     resource: {
       resourceType: 'Questionnaire',
       id: '66609',
@@ -535,7 +535,7 @@ const questionnaires = [
     }
   },
   {
-    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/Questionnaire/70494`,
+    fullUrl: `${process.env.NEXT_PUBLIC_FHIR_SERVER_BASE_URL}/Questionnaire/70494`,
     resource: {
       resourceType: 'Questionnaire',
       id: '70494',
@@ -573,7 +573,7 @@ const questionnaires = [
     }
   },
   {
-    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/Questionnaire/70495`,
+    fullUrl: `${process.env.NEXT_PUBLIC_FHIR_SERVER_BASE_URL}/Questionnaire/70495`,
     resource: {
       resourceType: 'Questionnaire',
       id: '70495',
@@ -611,7 +611,7 @@ const questionnaires = [
     }
   },
   {
-    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/Questionnaire/70496`,
+    fullUrl: `${process.env.NEXT_PUBLIC_FHIR_SERVER_BASE_URL}/Questionnaire/70496`,
     resource: {
       resourceType: 'Questionnaire',
       id: '70496',
@@ -649,7 +649,7 @@ const questionnaires = [
     }
   },
   {
-    fullUrl: `${process.env.FHIR_SERVER_BASE_URL}/Questionnaire/70497`,
+    fullUrl: `${process.env.NEXT_PUBLIC_FHIR_SERVER_BASE_URL}/Questionnaire/70497`,
     resource: {
       resourceType: 'Questionnaire',
       id: '70497',
