@@ -24,7 +24,6 @@ export default function LForm({
       fhirSupportFileReady &&
       !formRendered.current
     ) {
-      console.log('questionnaireResponse', questionnaireResponse);
       const {
         questionnaire: { resource: questionnaireResource },
         resource: questionnaireResponseResource
@@ -51,7 +50,6 @@ export default function LForm({
   }, [formContainer, questionnaireResponse, fhirSupportFileReady]);
 
   const handleSubmit = async ({ id }: { id: string }) => {
-    console.log('submit button clicked');
     if (formContainer.current && fhirSupportFileReady) {
       try {
         const resource = window.LForms.Util.getFormFHIRData(

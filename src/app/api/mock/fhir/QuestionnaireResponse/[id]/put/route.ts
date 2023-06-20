@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 import merge from 'lodash.merge';
-import questionnaireResponses from '../../../../../../../lib/mock/QuestionnaireResponse';
 import { revalidatePath } from 'next/cache';
 
 export const fetchCache = 'force-no-store';
@@ -12,8 +11,14 @@ export async function PUT(
   { params: { id } }: { params: { id: string } }
 ) {
   try {
+    const questionnaireResponses = await fetch(
+      `${process.env.NEXTAUTH_URL}/json/responses.json`,
+      {
+        cache: 'no-cache'
+      }
+    ).then((response) => response.json());
     const originalQuestionnaireResponse = questionnaireResponses.find(
-      (qr) => qr.resource.id === id
+      (qr: any) => qr.resource.id === id
     );
     const body = await request.json();
     const updatedQuestionnaireResponse = {
@@ -30,24 +35,20 @@ export async function PUT(
       updatedQuestionnaireResponse.resource.meta.lastUpdated =
         body.resource.authored;
     }
-    const updatedQuestionnaireResponses = questionnaireResponses.map((qr) => {
-      if (qr.resource.id === id) {
-        return updatedQuestionnaireResponse;
+    const updatedQuestionnaireResponses = questionnaireResponses.map(
+      (qr: any) => {
+        if (qr.resource.id === id) {
+          return updatedQuestionnaireResponse;
+        }
+        return qr;
       }
-      return qr;
-    });
-    const filePath = path.join(
-      process.cwd(),
-      '/src/lib/mock/QuestionnaireResponse.ts'
     );
-    console.log('filePath', filePath);
+    // const filePath = path.join(process.cwd(), '/src/lib/mock/responses.json');
+    const filePath = path.join(process.cwd(), '/public/json/responses.json');
+
     await fs.writeFile(
       filePath,
-      `const questionnaireResponses = ${JSON.stringify(
-        updatedQuestionnaireResponses,
-        null,
-        2
-      )};\nexport default questionnaireResponses;\n`
+      `${JSON.stringify(updatedQuestionnaireResponses, null, 2)}`
     );
 
     revalidatePath(
@@ -56,6 +57,7 @@ export async function PUT(
     revalidatePath(`${process.env.NEXT_PUBLIC_FHIR_SERVER_BASE_URL}/Patient`);
     return NextResponse.json(updatedQuestionnaireResponse, { status: 200 });
   } catch (e) {
+    console.log('e', e);
     return NextResponse.json({ error: e }, { status: 500 });
   }
 }
