@@ -5,8 +5,6 @@ import Script from 'next/script';
 import { Card, Title, Text, Flex, Button } from '@tremor/react';
 import { lformScripts, getRealUrl } from '../../../lib/lforms';
 
-const scripts = lformScripts.slice(-1);
-
 export default function LForm({
   questionnaireResponse,
   id
@@ -93,16 +91,20 @@ export default function LForm({
           Submit
         </Button>
       </Flex>
-      {scripts.map((script) => (
-        <Script
-          src={getRealUrl(script)}
-          strategy="lazyOnload"
-          key={script}
-          onLoad={(e) => {
-            setFhirSupportFileReady(true);
-          }}
-        />
-      ))}
+      {lformScripts.map(([script, strategy]) =>
+        strategy === 'beforeInteractive' ? (
+          <Script src={getRealUrl(script)} strategy={strategy} key={script} />
+        ) : (
+          <Script
+            src={getRealUrl(script)}
+            strategy={strategy}
+            key={script}
+            onLoad={(e) => {
+              setFhirSupportFileReady(true);
+            }}
+          />
+        )
+      )}
     </>
   );
 }
