@@ -1,22 +1,28 @@
 import { NextResponse } from 'next/server';
 import patients from '../../../../../lib/mock/Patient';
-import questionnaireResponses from '../../../../../lib/mock/QuestionnaireResponse';
 
 export const revalidate = 60 * 60 * 24; // 24 hours
 
-export function GET(request: Request) {
+export async function GET(request: Request) {
   const patient = patients.find((patient) =>
     patient.resource.identifier
       .map((i) => i?.value ?? false)
       .filter((i) => i)
       .includes(`mailto:${new URL(request.url).searchParams.get('identifier')}`)
   );
+  const questionnaireResponses = await fetch(
+    `${process.env.NEXTAUTH_URL}/json/responses.json`,
+    {
+      cache: 'no-cache'
+    }
+  ).then((response) => response.json());
+
   return patient
     ? NextResponse.json(
         {
           ...patient,
           questionnaireResponses: questionnaireResponses.filter(
-            (qr) =>
+            (qr: any) =>
               qr.resource.subject.reference === `Patient/${patient.resource.id}`
           )
         },
