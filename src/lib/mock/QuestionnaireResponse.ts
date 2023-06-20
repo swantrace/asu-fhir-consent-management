@@ -6,8 +6,16 @@ const questionnaireResponses = [
       "id": "7270321",
       "meta": {
         "versionId": "4",
-        "lastUpdated": "2023-02-13T16:31:54.837+00:00",
-        "source": "#Qi0wwIGKlSDOZBt4"
+        "lastUpdated": "2023-06-20T19:12:05.296Z",
+        "source": "#Qi0wwIGKlSDOZBt4",
+        "profile": [
+          "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaireresponse|2.7"
+        ],
+        "tag": [
+          {
+            "code": "lformsVersion: 30.0.0-beta.6"
+          }
+        ]
       },
       "basedOn": [
         {
@@ -18,15 +26,17 @@ const questionnaireResponses = [
         "reference": "Patient/113798"
       },
       "questionnaire": "Questionnaire/59525",
-      "status": "in-progress",
+      "status": "completed",
       "item": [
         {
           "linkId": "1",
           "answer": [
             {
-              "valueString": "New Value"
+              "valueString": "New Value",
+              "valueBoolean": true
             }
-          ]
+          ],
+          "text": "Do you have allergies?"
         },
         {
           "linkId": "2",
@@ -44,7 +54,8 @@ const questionnaireResponses = [
             }
           ]
         }
-      ]
+      ],
+      "authored": "2023-06-20T19:12:05.296Z"
     },
     "search": {
       "mode": "match"

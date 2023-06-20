@@ -56,6 +56,7 @@ export async function PUT(
     revalidatePath(`${process.env.NEXT_PUBLIC_FHIR_SERVER_BASE_URL}/Patient`);
     return NextResponse.json(updatedQuestionnaireResponse, { status: 200 });
   } catch (e) {
+    console.log('e', e);
     return NextResponse.json({ error: e }, { status: 500 });
   }
 }
