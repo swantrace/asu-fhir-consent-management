@@ -23,10 +23,7 @@ export async function PUT(
         body?.resource ?? {}
       )
     };
-    if (
-      body?.resource?.authored &&
-      updatedQuestionnaireResponse?.resource?.meta?.lastUpdated
-    ) {
+    if (body?.resource?.authored) {
       updatedQuestionnaireResponse.resource.meta.lastUpdated =
         body.resource.authored;
     }
