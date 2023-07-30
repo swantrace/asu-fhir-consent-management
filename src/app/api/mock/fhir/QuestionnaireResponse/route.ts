@@ -8,7 +8,8 @@ export async function GET(request: Request) {
   const questionnaireResponses = (await kv.get('qrs')) as any[];
   return NextResponse.json(
     questionnaireResponses.filter(
-      (qr: any) => qr.resource.subject.reference === `Patient/${patientId}`
+      // (qr: any) => qr.resource.subject.reference === `Patient/${patientId}`
+      () => true
     )
   );
 }

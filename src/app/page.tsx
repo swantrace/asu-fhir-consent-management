@@ -19,7 +19,11 @@ export default async function IndexPage() {
     `${process.env.NEXT_PUBLIC_FHIR_SERVER_BASE_URL}/Patient?identifier=${email}`
   );
   const patient = await res.json();
-  const questionnaireResponses = patient?.questionnaireResponses ?? [];
+  const questionnaireResponses =
+    patient?.questionnaireResponses ??
+    (await fetch(
+      `${process.env.NEXT_PUBLIC_FHIR_SERVER_BASE_URL}/QuestionnaireResponse`
+    ).then((res) => res.json()));
   const completeQuestionnaireResponsesFetchPromises =
     questionnaireResponses?.map(async (questionnaireResponse: any) => {
       const questionnaireId =

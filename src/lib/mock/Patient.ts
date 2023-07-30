@@ -94,7 +94,7 @@ const patients = [
       identifier: [
         {
           system: 'urn:ietf:rfc:3986',
-          value: 'mailto:frederickhong.5@gmail.com'
+          value: 'mailto:frederickhong.5@gmail.cn'
         }
       ],
       active: true,

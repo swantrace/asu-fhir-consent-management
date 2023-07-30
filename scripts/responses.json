@@ -290,5 +290,30 @@
     "search": {
       "mode": "match"
     }
+  },
+  {
+    "fullUrl": "http://localhost:3000/api/mock/fhir/QuestionnaireResponse/sample-questionnaire/get",
+    "resource": {
+      "resourceType": "QuestionnaireResponse",
+      "id": "7270351",
+      "meta": {
+        "versionId": "1",
+        "lastUpdated": "2023-01-09T21:46:02.654+00:00",
+        "source": "#9WJLebX8mC5Hnnau"
+      },
+      "basedOn": [
+        {
+          "reference": "ServiceRequest/7167589"
+        }
+      ],
+      "subject": {
+        "reference": "Patient/113798"
+      },
+      "questionnaire": "Questionnaire/sample-questionnaire",
+      "status": "in-progress"
+    },
+    "search": {
+      "mode": "match"
+    }
   }
 ]

@@ -685,6 +685,87 @@ const questionnaires = [
     search: {
       mode: 'match'
     }
+  },
+  {
+    fullUrl: `${process.env.NEXT_PUBLIC_FHIR_SERVER_BASE_URL}/Questionnaire/sample-questionnaire`,
+    resource: {
+      resourceType: 'Questionnaire',
+      id: 'sample-questionnaire',
+      name: 'Sample Organization',
+      title: 'Sample Organization',
+      status: 'active',
+      code: [
+        {
+          code: '59284-0',
+          system: 'http://loinc.org',
+          display: 'Consent Document'
+        }
+      ],
+      item: [
+        {
+          linkId: 'practitioner',
+          text: 'I, the undersign here, authorize the following practitioner (and their designated assistants)',
+          type: 'reference',
+          definition:
+            'https://github.com/mojitoj/ASU-FHIR-consent-validation/StructureDefinition/ASU.treatment-consent#Consent.grantee'
+        },
+        {
+          linkId: 'procedures',
+          text: 'to administer such treatments as are necessary, and to perform the following procedures',
+          type: 'coding',
+          definition:
+            'https://github.com/mojitoj/ASU-FHIR-consent-validation/StructureDefinition/ASU.treatment-consent#Consent.provision.code'
+        },
+        {
+          linkId: 'organization',
+          text: 'Organization',
+          type: 'reference',
+          definition:
+            'https://github.com/mojitoj/ASU-FHIR-consent-validation/StructureDefinition/ASU.treatment-consent#Consent.controller'
+        },
+        {
+          linkId: 'Patient',
+          text: 'Patient name',
+          type: 'reference',
+          definition:
+            'https://github.com/mojitoj/ASU-FHIR-consent-validation/StructureDefinition/ASU.treatment-consent#Consent.subject'
+        },
+        {
+          linkId: 'dateTime',
+          text: 'The consent is effective on',
+          type: 'dateTime',
+          definition:
+            'https://github.com/mojitoj/ASU-FHIR-consent-validation/StructureDefinition/ASU.treatment-consent#Consent.date'
+        },
+        {
+          linkId: 'grantor',
+          text: 'Legal authorizer of consent',
+          type: 'reference',
+          definition:
+            'https://github.com/mojitoj/ASU-FHIR-consent-validation/StructureDefinition/ASU.treatment-consent#Consent.grantor'
+        },
+        {
+          linkId: 'provider',
+          text: 'I, the undersigned here, agree to fulfill all obligations to the patient',
+          type: 'reference'
+        },
+        {
+          linkId: 'administrator',
+          text: 'I, the undersign here, have been explained all the benefits and possible complications of the procedure',
+          type: 'reference'
+        },
+        {
+          linkId: 'translator',
+          text: 'Individual who helped explain/translate the document',
+          type: 'reference'
+        },
+        {
+          linkId: 'witness',
+          text: 'Individual who provided witness to the execution of the consent',
+          type: 'reference'
+        }
+      ]
+    }
   }
 ];
 export default questionnaires;
